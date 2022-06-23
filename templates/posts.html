@@ -1,0 +1,44 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+<!-- Название у нас будет posts -->
+{% block title %} Posts {% endblock title %}
+
+<!-- В контенте на странице мы выводим все объявления -->
+{% block content %}
+    <h1>Все объявления</h1>
+    <h4>{{ posts|length }}</h4>
+    <hr>
+    {% if posts %}
+        <table>
+            <tr>
+                <td>
+                    Заголовок
+                </td>
+                <td>
+                    Дата публикации
+                </td>
+                <td>
+                    Текст
+                </td>
+            </tr>
+        {% for post in posts %}
+            <tr>
+                <td>
+                   {{ post.head_post }}
+                </td>
+                <td>
+                    {{ post.date_create|date:'d-M-y h:m' }}
+                </td>
+                <td>
+                    {{ post.text|truncatechars:50 }}
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+<!--        {{ posts }}-->
+    {% else %}
+        <h2>Объявлений нет!</h2>
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,11 @@
+{% load socialaccount %}
+<html>
+<body>
+    <h1>Allauth_users</h1>
+    {% if user.is_authenticated %}
+    <p> Вход под пользователем {{ user.username }} выполнен. </p>
+    {% else %}
+    <a href="{% provider_login_url 'yandex' %}"> Login with Yandex </a>
+    {% endif %}
+</body>
+</html>
